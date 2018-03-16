@@ -34,7 +34,7 @@ is $sp.strerror(STRINGPREP_OK), 'Success';
 {
     my $input  = 'test';
     my $output := $sp.utf8_to_ucs4($input);
-    is $output.elems, $input.encode.elems + 1;
+    is $output.elems, $input.encode.elems;
     is $sp.ucs4_to_utf8($output), $input;
 }
 

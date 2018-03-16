@@ -61,7 +61,7 @@ multi method profile(Str $input, Str $profile, Int $flags, Int $code is rw --> S
 
 proto method nameprep(Str, Int $? --> Str) { * }
 multi method nameprep(Str $input --> Str) {
-    $.profile($input, 'Nameprep', 0, (my Int $ = 0))
+    $.profile($input, 'Nameprep', 0)
 }
 multi method nameprep(Str $input, Int $code is rw --> Str) {
     $.profile($input, 'Nameprep', 0, $code)
@@ -69,7 +69,7 @@ multi method nameprep(Str $input, Int $code is rw --> Str) {
 
 proto method nameprep_no_unassigned(Str, Int $? --> Str) { * }
 multi method nameprep_no_unassigned(Str $input --> Str) {
-    $.profile($input, 'Nameprep', STRINGPREP_NO_UNASSIGNED, (my Int $ = 0))
+    $.profile($input, 'Nameprep', STRINGPREP_NO_UNASSIGNED)
 }
 multi method nameprep_no_unassigned(Str $input, Int $code is rw --> Str) {
     $.profile($input, 'Nameprep', STRINGPREP_NO_UNASSIGNED, $code)
@@ -77,7 +77,7 @@ multi method nameprep_no_unassigned(Str $input, Int $code is rw --> Str) {
 
 proto method plain(Str, Int $? --> Str) { * }
 multi method plain(Str $input --> Str) {
-    $.profile($input, 'plain', 0, (my Int $ = 0))
+    $.profile($input, 'plain', 0)
 }
 multi method plain(Str $input, Int $code is rw --> Str) {
     $.profile($input, 'plain', 0, $code)
@@ -85,7 +85,7 @@ multi method plain(Str $input, Int $code is rw --> Str) {
 
 proto method kerberos5(Str, Int $? --> Str) { * }
 multi method kerberos5(Str $input --> Str) {
-    $.profile($input, 'KRBprep', 0, (my Int $ = 0))
+    $.profile($input, 'KRBprep', 0)
 }
 multi method kerberos5(Str $input, Int $code is rw --> Str) {
     $.profile($input, 'KRBprep', 0, $code)
@@ -93,7 +93,7 @@ multi method kerberos5(Str $input, Int $code is rw --> Str) {
 
 proto method xmpp_nodeprep(Str, Int $? --> Str) { * }
 multi method xmpp_nodeprep(Str $input --> Str) {
-    $.profile($input, 'Nodeprep', 0, (my Int $ = 0))
+    $.profile($input, 'Nodeprep', 0)
 }
 multi method xmpp_nodeprep(Str $input, Int $code is rw --> Str) {
     $.profile($input, 'Nodeprep', 0, $code)
@@ -101,7 +101,7 @@ multi method xmpp_nodeprep(Str $input, Int $code is rw --> Str) {
 
 proto method xmpp_resourceprep(Str, Int $? --> Str) { * }
 multi method xmpp_resourceprep(Str $input --> Str) {
-    $.profile($input, 'Resourceprep', 0, (my Int $ = 0))
+    $.profile($input, 'Resourceprep', 0)
 }
 multi method xmpp_resourceprep(Str $input, Int $code is rw --> Str) {
     $.profile($input, 'Resourceprep', 0, $code)
@@ -109,7 +109,7 @@ multi method xmpp_resourceprep(Str $input, Int $code is rw --> Str) {
 
 proto method iscsi(Str, Int $? --> Str) { * }
 multi method iscsi(Str $input --> Str) {
-    $.profile($input, 'ISCSIprep', 0, (my Int $ = 0))
+    $.profile($input, 'ISCSIprep', 0)
 }
 multi method iscsi(Str $input, Int $code is rw --> Str) {
     $.profile($input, 'ISCSIprep', 0, $code)
@@ -126,13 +126,13 @@ sub stringprep_utf8_to_ucs4(
     --> Pointer[uint32]
 ) is native(LIB) { * }
 method utf8_to_ucs4(Str $input --> Buf[uint32]) {
-    my ssize_t $len = $input.encode.elems + 1;
+    my ssize_t $len = $input.encode.elems;
     my size_t $written;
     my $outputptr := stringprep_utf8_to_ucs4($input, $len, $written);
     my Buf[uint32] $output .= new;
     return $output if $written == 0;
 
-    for 0..$written { $output.push($outputptr[$_]) }
+    for 0..^$written { $output.push($outputptr[$_]) }
     idn_free($outputptr);
     $output;
 }
