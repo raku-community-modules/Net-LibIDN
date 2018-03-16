@@ -1,13 +1,13 @@
 use v6.c;
 use NativeCall;
-use Net::LibIDN;
+use Net::LibIDN::StringPrep;
 use Net::LibIDN::TLD;
 use Test;
 
 plan 13;
 
 if Version.new(STRINGPREP_VERSION) < v0.4.0 {
-    skip 13;
+    skip 13, 'TLD functions do not exist before LibIDN v0.4.0';
 } else {
     my $idn_tld := Net::LibIDN::TLD.new;
 

@@ -1,6 +1,6 @@
 use v6.c;
 use Test;
-use Net::LibIDN;
+use Net::LibIDN::StringPrep;
 
 plan 1;
 

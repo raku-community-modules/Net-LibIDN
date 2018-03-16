@@ -8,8 +8,10 @@
   "perl" : "6.c",
   "provides" : {
     "Net::LibIDN" : "lib/Net/LibIDN.pm6",
-	"Net::LibIDN::Punycode" : "lib/Net/LibIDN/Punycode.pm6",
-	"Nwt::LibIDN::StringPrep" : "lib/Net/LibIDN/StringPrep.pm6",
+    "Net::LibIDN::Free" : "lib/Net/LibIDN/Free.pm6",
+    "Net::LibIDN::Native" : "lib/Net/LibIDN/Native.pm6",
+    "Net::LibIDN::Punycode" : "lib/Net/LibIDN/Punycode.pm6",
+    "Net::LibIDN::StringPrep" : "lib/Net/LibIDN/StringPrep.pm6",
     "Net::LibIDN::TLD" : "lib/Net/LibIDN/TLD.pm6"
   },
   "resources" : [ ],
