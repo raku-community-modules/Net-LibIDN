@@ -6,3 +6,12 @@
 /resources/*.dylib
 .precomp/
 /Net-LibIDN-*
+
+*~
+*swp
+*swo
+
+*.lock
+
+*.core
+.precomp/
