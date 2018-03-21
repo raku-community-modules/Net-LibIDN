@@ -18,6 +18,7 @@ sub punycode_encode(
     buf8 is rw
     --> int32
 ) is native(LIB) { * }
+proto method encode(Str, Int $? --> Str) { * }
 multi method encode(Str $domain --> Str) {
     my $input := Net::LibIDN::StringPrep.utf8_to_ucs4($domain);
     my $inputlen := $input.elems;
@@ -49,6 +50,7 @@ sub punycode_decode(
     Pointer[uint8]
     --> int32
 ) is native(LIB) { * }
+proto method decode(Str, Int $? --> Str) { * }
 multi method decode(Str $input --> Str) {
     my $inputlen := $input.chars;
     my size_t $outputlen = 4096;
