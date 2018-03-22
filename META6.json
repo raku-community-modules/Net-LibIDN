@@ -15,7 +15,7 @@
     "Net::LibIDN::TLD" : "lib/Net/LibIDN/TLD.pm6"
   },
   "resources" : [ ],
-  "source-url" : "https://github.com/Kaiepi/p6-Net-LibIDN.git",
+  "source-url" : "git://github.com/Kaiepi/p6-Net-LibIDN.git",
   "tags" : [ "API", "Net", "DNS" ],
   "test-depends" : [ ],
   "version" : "0.0.1"
