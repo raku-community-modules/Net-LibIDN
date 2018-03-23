@@ -120,41 +120,39 @@ multi method iscsi(Str $input, Int $code is rw --> Str) {
 #
 
 sub stringprep_utf8_to_ucs4(
-    Str,
+    Blob[uint8],
     ssize_t,
     size_t is rw
     --> Pointer[uint32]
 ) is native(LIB) { * }
-method utf8_to_ucs4(Str $input --> Buf[uint32]) {
-    my ssize_t $len = $input.encode.elems;
+method utf8_to_ucs4(Blob[uint8] $input --> Blob[uint32]) {
+    my ssize_t $len = $input.elems;
     my size_t $written;
     my $outputptr := stringprep_utf8_to_ucs4($input, $len, $written);
-    my Buf[uint32] $output .= new;
-    return $output if $written == 0;
+    return Blob[uint32].new if $written == 0;
 
-    for 0..^$written { $output.push($outputptr[$_]) }
+    my Blob[uint32] $output .= new: ($outputptr[$_] for 0..^$written);
     idn_free($outputptr);
     $output;
 }
 
 sub stringprep_ucs4_to_utf8(
-    Buf[uint32],
+    Blob[uint32],
     ssize_t,
     size_t is rw,
     size_t is rw
     --> Pointer[uint8]
 ) is native(LIB) { * }
-method ucs4_to_utf8(Buf[uint32] $input --> Str) {
+method ucs4_to_utf8(Blob[uint32] $input --> Blob[uint8]) {
     my ssize_t $len = $input.elems;
     my size_t $read;
     my size_t $written;
     my $outputptr := stringprep_ucs4_to_utf8($input, $len, $read, $written);
-    return '' if $written == 0;
+    return Blob[uint8].new if $written == 0;
 
-    my Buf[uint8] $output .= new;
-    for 0..^$written { $output.push($outputptr[$_]) }
+    my Blob[uint8] $output .= new: ($outputptr[$_] for 0..^$written);
     idn_free($outputptr);
-    $output.decode;
+    $output;
 }
 
 =begin pod

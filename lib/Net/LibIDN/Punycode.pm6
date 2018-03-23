@@ -12,64 +12,70 @@ constant PUNYCODE_OVERFLOW   is export = 3;
 
 sub punycode_encode(
     size_t,
-    buf32,
+    Blob[uint32],
     Pointer[uint8],
     size_t is rw,
-    buf8 is rw
+    Blob[uint8] is rw
     --> int32
 ) is native(LIB) { * }
 proto method encode(Str, Int $? --> Str) { * }
 multi method encode(Str $domain --> Str) {
-    my $input := Net::LibIDN::StringPrep.utf8_to_ucs4($domain);
-    my $inputlen := $input.elems;
+    my $input := Net::LibIDN::StringPrep.utf8_to_ucs4($domain.encode('utf8-c8'));
+    my size_t $inputlen = $input.elems;
     my $case_flags := Pointer[uint8].new;
     my size_t $outputlen = 4096;
-    my buf8 $output .= allocate: $outputlen;
+    my Blob[uint8] $output .= allocate: $outputlen;
     my $code := punycode_encode($inputlen, $input, $case_flags, $outputlen, $output);
-    ($code == PUNYCODE_SUCCESS)
-        ?? $output.subbuf(0, $outputlen).decode('ascii')
-        !! '';
+    return '' if $code != PUNYCODE_SUCCESS;
+
+    $output.subbuf(0, $outputlen).decode('utf8-c8');
 }
 multi method encode(Str $domain, Int $code is rw --> Str) {
-    my $input := Net::LibIDN::StringPrep.utf8_to_ucs4($domain);
-    my $inputlen := $input.elems;
+    my $input := Net::LibIDN::StringPrep.utf8_to_ucs4($domain.encode('utf8-c8'));
+    my size_t $inputlen = $input.elems;
     my $case_flags := Pointer[uint8].new;
     my size_t $outputlen = 4096;
-    my buf8 $output .= allocate: $outputlen;
+    my Blob[uint8] $output .= allocate: $outputlen;
     $code = punycode_encode($inputlen, $input, $case_flags, $outputlen, $output);
-    ($code == PUNYCODE_SUCCESS)
-        ?? $output.subbuf(0, $outputlen).decode('ascii')
-        !! '';
+    return '' if $code != PUNYCODE_SUCCESS;
+
+    $output.subbuf(0, $outputlen).decode('utf8-c8');
 }
 
 sub punycode_decode(
     size_t,
-    Str is encoded('ascii'),
+    Blob[uint8],
     size_t is rw,
-    buf32 is rw,
+    Blob[uint32] is rw,
     Pointer[uint8]
     --> int32
 ) is native(LIB) { * }
 proto method decode(Str, Int $? --> Str) { * }
-multi method decode(Str $input --> Str) {
-    my $inputlen := $input.chars;
+multi method decode(Str $domain --> Str) {
+    my $input := $domain.encode('utf8-c8');
+    my size_t $inputlen = $input.elems;
     my size_t $outputlen = 4096;
-    my buf32 $output .= allocate: $outputlen;
+    my Blob[uint32] $output .= allocate: $outputlen;
     my $case_flags := Pointer[uint8].new;
     my $code := punycode_decode($inputlen, $input, $outputlen, $output, $case_flags);
-    ($code == PUNYCODE_SUCCESS)
-        ?? Net::LibIDN::StringPrep.ucs4_to_utf8($output)
-        !! '';
+    return '' if $code != PUNYCODE_SUCCESS;
+
+    Net::LibIDN::StringPrep
+        .ucs4_to_utf8($output.subbuf(0, $outputlen))
+        .decode('utf8-c8');
 }
-multi method decode(Str $input, Int $code is rw --> Str) {
-    my $inputlen := $input.chars;
+multi method decode(Str $domain, Int $code is rw --> Str) {
+    my $input := $domain.encode('utf8-c8');
+    my size_t $inputlen = $input.elems;
     my size_t $outputlen = 4096;
-    my buf32 $output .= allocate: $outputlen;
+    my Blob[uint32] $output .= allocate: $outputlen;
     my $case_flags := Pointer[uint8].new;
     $code = punycode_decode($inputlen, $input, $outputlen, $output, $case_flags);
-    ($code == PUNYCODE_SUCCESS)
-        ?? Net::LibIDN::StringPrep.ucs4_to_utf8($output)
-        !! '';
+    return '' if $code != PUNYCODE_SUCCESS;
+
+    Net::LibIDN::StringPrep
+        .ucs4_to_utf8($output.subbuf(0, $outputlen))
+        .decode('utf8-c8');
 }
 
 =begin pod

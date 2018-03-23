@@ -8,8 +8,8 @@ my $punycode := Net::LibIDN::Punycode.new;
 my $domain = "m\xFC\xDFli.de";
 my Int $code;
 my $ace := $punycode.encode($domain, $code);
-is $code, PUNYCODE_SUCCESS;
 is $ace, 'mli.de-bta5u';
+is $code, PUNYCODE_SUCCESS;
 is $punycode.decode($ace, $code), $domain;
 is $code, PUNYCODE_SUCCESS;
 
