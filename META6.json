@@ -18,5 +18,5 @@
   "source-url" : "git://github.com/Kaiepi/p6-Net-LibIDN.git",
   "tags" : [ "API", "Net", "DNS" ],
   "test-depends" : [ ],
-  "version" : "0.0.1"
+  "version" : "0.0.2"
 }

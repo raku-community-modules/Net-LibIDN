@@ -2,7 +2,7 @@ use v6.c;
 use NativeCall;
 use Net::LibIDN::Free;
 use Net::LibIDN::Native;
-unit class Net::LibIDN:ver<0.0.1>:auth<github:Kaiepi>;
+unit class Net::LibIDN:ver<0.0.2>:auth<github:Kaiepi>;
 
 constant IDNA_ACE_PREFIX is export = 'xn--';
 
