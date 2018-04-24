@@ -36,5 +36,3 @@ is $sp.strerror(STRINGPREP_OK), 'Success';
     my $output := $sp.utf8_to_ucs4($input);
     is $sp.ucs4_to_utf8($output), $input;
 }
-
-done-testing;

@@ -12,5 +12,3 @@ is $ace, 'mli.de-bta5u';
 is $code, PUNYCODE_SUCCESS;
 is $punycode.decode($ace, $code), $domain;
 is $code, PUNYCODE_SUCCESS;
-
-done-testing;

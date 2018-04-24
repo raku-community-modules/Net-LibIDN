@@ -12,5 +12,3 @@ is $output, 'xn--mssli-kva.de';
 is $code, IDNA_SUCCESS;
 is $idna.to_unicode_8z8z($output, 0, $code), "m\xFCssli.de";
 is $code, IDNA_SUCCESS;
-
-done-testing;

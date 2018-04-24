@@ -56,5 +56,3 @@ my $idn_tld := Net::LibIDN::TLD.new;
     is $errpos, 0;
     is $code, TLD_SUCCESS;
 }
-
-done-testing;
