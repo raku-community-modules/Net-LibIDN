@@ -96,16 +96,16 @@ Net::LibIDN::StringPrep, and Net::LibIDN::TLD for more documentation.
 =item B<Net::LibIDN.to_ascii_8z>(Str I<$input>, Int I<$flags> --> Str)
 =item B<Net::LibIDN.to_ascii_8z>(Str I<$input>, Int I<$flags>, Int I<$code> is rw --> Str)
 
-Converts a UTF8 encoded string I<$input> to ASCII and returns the output.
-I<$code>, if provided, is assigned to I<IDNA_SUCCESS> on success, or another
+Converts a UTF8 encoded string C<$input> to ASCII and returns the output.
+C<$code>, if provided, is assigned to C<IDNA_SUCCESS> on success, or another
 error code otherwise.
 
 =item B<Net::LibIDN.to_unicode_8z8z>(Str I<$input> --> Str)
 =item B<Net::LibIDN.to_unicode_8z8z>(Str I<$input>, Int I<$flags> --> Str)
 =item B<Net::LibIDN.to_unicode_8z8z>(Str I<$input>, Int I<$flags>, Int I<$code> is rw --> Str)
 
-Converts an ACE encoded domain name I<$input> to UTF8 and returns the output.
-I<$code>, if provided, is assigned to I<IDNA_SUCCESS> on success, or another
+Converts an ACE encoded domain name C<$input> to UTF8 and returns the output.
+C<$code>, if provided, is assigned to C<IDNA_SUCCESS> on success, or another
 error code otherwise.
 
 =head1 CONSTANTS
@@ -140,12 +140,12 @@ Error during punycode operation.
 
 =item Int B<IDNA_CONTAINS_NON_LDH>
 
-I<IDNA_USE_STD3_ASCII_RULES> flag was passed, but the given string contained
+C<IDNA_USE_STD3_ASCII_RULES> flag was passed, but the given string contained
 non-LDH ASCII characters.
 
 =item Int B<IDNA_CONTAINS_MINUS>
 
-I<IDNA_USE_STD3_ASCII_RULES> flag was passed, but the given string contained a
+C<IDNA_USE_STD3_ASCII_RULES> flag was passed, but the given string contained a
 leading or trailing hyphen-minus (u002D).
 
 =item Int B<IDNA_INVALID_LENGTH>
@@ -154,7 +154,7 @@ The final output string is not within the range of 1 to 63 characters.
 
 =item Int B<IDNA_NO_ACE_PREFIX>
 
-The string does not begin with I<IDNA_ACE_PREFIX> (for ToUnicode).
+The string does not begin with C<IDNA_ACE_PREFIX> (for ToUnicode).
 
 =item Int B<IDNA_ROUNDTRIP_VERIFY_ERROR>
 
@@ -162,7 +162,7 @@ The ToASCII operation on the output string does not equal the input.
 
 =item Int B<IDNA_CONTAINS_ACE_PREFIX>
 
-The input string begins with I<IDNA_ACE_PREFIX> (for ToASCII).
+The input string begins with C<IDNA_ACE_PREFIX> (for ToASCII).
 
 =item Int B<IDNA_ICONV_ERROR>
 
@@ -178,7 +178,7 @@ Could not dlopen the libcidn DSO (only used internally in LibC).
 
 =head1 AUTHOR
 
-Ben Davies <kaiepi@outlook.com>
+Ben Davies (kaiepi)
 
 =head1 COPYRIGHT AND LICENSE
 

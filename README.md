@@ -34,7 +34,7 @@ METHODS
 
   * **Net::LibIDN.to_ascii_8z**(Str *$input*, Int *$flags*, Int *$code* is rw --> Str)
 
-Converts a UTF8 encoded string *$input* to ASCII and returns the output. *$code*, if provided, is assigned to *IDNA_SUCCESS* on success, or another error code otherwise.
+Converts a UTF8 encoded string `$input` to ASCII and returns the output. `$code`, if provided, is assigned to `IDNA_SUCCESS` on success, or another error code otherwise.
 
   * **Net::LibIDN.to_unicode_8z8z**(Str *$input* --> Str)
 
@@ -42,7 +42,7 @@ Converts a UTF8 encoded string *$input* to ASCII and returns the output. *$code*
 
   * **Net::LibIDN.to_unicode_8z8z**(Str *$input*, Int *$flags*, Int *$code* is rw --> Str)
 
-Converts an ACE encoded domain name *$input* to UTF8 and returns the output. *$code*, if provided, is assigned to *IDNA_SUCCESS* on success, or another error code otherwise.
+Converts an ACE encoded domain name `$input` to UTF8 and returns the output. `$code`, if provided, is assigned to `IDNA_SUCCESS` on success, or another error code otherwise.
 
 CONSTANTS
 =========
@@ -79,11 +79,11 @@ Error during punycode operation.
 
   * Int **IDNA_CONTAINS_NON_LDH**
 
-*IDNA_USE_STD3_ASCII_RULES* flag was passed, but the given string contained non-LDH ASCII characters.
+`IDNA_USE_STD3_ASCII_RULES` flag was passed, but the given string contained non-LDH ASCII characters.
 
   * Int **IDNA_CONTAINS_MINUS**
 
-*IDNA_USE_STD3_ASCII_RULES* flag was passed, but the given string contained a leading or trailing hyphen-minus (u002D).
+`IDNA_USE_STD3_ASCII_RULES` flag was passed, but the given string contained a leading or trailing hyphen-minus (u002D).
 
   * Int **IDNA_INVALID_LENGTH**
 
@@ -91,7 +91,7 @@ The final output string is not within the range of 1 to 63 characters.
 
   * Int **IDNA_NO_ACE_PREFIX**
 
-The string does not begin with *IDNA_ACE_PREFIX* (for ToUnicode).
+The string does not begin with `IDNA_ACE_PREFIX` (for ToUnicode).
 
   * Int **IDNA_ROUNDTRIP_VERIFY_ERROR**
 
@@ -99,7 +99,7 @@ The ToASCII operation on the output string does not equal the input.
 
   * Int **IDNA_CONTAINS_ACE_PREFIX**
 
-The input string begins with *IDNA_ACE_PREFIX* (for ToASCII).
+The input string begins with `IDNA_ACE_PREFIX` (for ToASCII).
 
   * Int **IDNA_ICONV_ERROR**
 
@@ -116,7 +116,7 @@ Could not dlopen the libcidn DSO (only used internally in LibC).
 AUTHOR
 ======
 
-Ben Davies <kaiepi@outlook.com>
+Ben Davies (kaiepi)
 
 COPYRIGHT AND LICENSE
 =====================
