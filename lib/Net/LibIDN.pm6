@@ -90,6 +90,64 @@ Net::LibIDN is a wrapper for the GNU LibIDN library. It provides bindings for
 its IDNA, Punycode, stringprep, and TLD functions. See Net::LibIDN::Punycode,
 Net::LibIDN::StringPrep, and Net::LibIDN::TLD for more documentation.
 
+LibIDN must be installed in order to use this library. Instructions vary
+depending on your OS:
+
+=item Windows
+
+Follow the instructions on L<https://www.gnu.org/software/libidn/manual/html_node/Downloading-and-Installing.html#Downloading-and-Installing>. Ensure the path to where LibIDN is installed is in your PATH environment variable!
+
+=item OS X
+
+    $ brew install libidn
+
+=item Ubuntu/Debian
+
+    $ sudo apt-get install libidn
+
+=item OpenSUSE
+
+    $ sudo zypper install libidn
+
+=item Fedora
+
+    $ sudo yum install libidn
+
+=item Arch/Manjaro
+
+    $ sudo pacman -S libidn
+
+=item FreeBSD
+
+    # pkg install libidn
+
+or
+
+    # cd /usr/ports/devel/libidn
+    # make config
+    # make
+    # make install
+
+=item OpenBSD
+
+    $ doas pkg_add libidn
+
+or
+
+    $ cd /usr/ports/devel/libidn
+    $ doas make
+    $ doas make install
+
+=item NetBSD
+
+    # pkgin install libidn
+
+or
+
+    # cd /usr/pkgsrc/devel/libidn
+    # make
+    # make install
+
 =head1 METHODS
 
 =item B<Net::LibIDN.to_ascii_8z>(Str I<$input> --> Str)
