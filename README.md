@@ -3,7 +3,7 @@
 NAME
 ====
 
-Net::LibIDN - Perl 6 bindings for GNU LibIDN
+Net::LibIDN - Raku bindings for GNU LibIDN
 
 SYNOPSIS
 ========
